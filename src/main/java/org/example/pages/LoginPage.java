@@ -58,10 +58,6 @@ public class LoginPage {
 
             wait.until(ExpectedConditions.elementToBeClickable(btnLogin));
             btnLogin.click();
-
-            wait.until(ExpectedConditions.not(
-                    ExpectedConditions.urlToBe("https://login.salesforce.com/")
-            ));
         } catch (Exception e) {
             throw new RuntimeException("Failed to login: " + e.getMessage());
         }
