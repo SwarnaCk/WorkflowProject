@@ -44,7 +44,7 @@ public class LoginPage {
     }
 
     public void navigateToLoginPage() {
-        driver.get("https://cloudkaptan-16d-dev-ed.develop.my.salesforce.com/");
+        driver.get("https://login.salesforce.com/");
     }
 
     public void login(String username, String password) {
