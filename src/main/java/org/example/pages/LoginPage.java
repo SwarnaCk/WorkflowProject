@@ -31,25 +31,14 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
-//    private void setupDriver() {
-//        WebDriverManager.chromedriver().setup();
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--disable-notifications");
-//        options.addArguments("--start-maximized");
-//        options.setPageLoadTimeout(Duration.ofSeconds(15));
-//        driver = new ChromeDriver(options);
-//        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//    }
-
     private void setupDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");  // Add this line
+        options.addArguments("--headless");
         options.addArguments("--disable-notifications");
-        options.addArguments("--no-sandbox"); // Add this line
-        options.addArguments("--disable-dev-shm-usage"); // Add this line
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--start-maximized");
-        options.setPageLoadTimeout(Duration.ofSeconds(15));
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
@@ -60,24 +49,19 @@ public class LoginPage {
 
     public void login(String username, String password) {
         try {
-            // Wait for username field and enter username
             wait.until(ExpectedConditions.visibilityOf(txtUsername));
             txtUsername.clear();
             txtUsername.sendKeys(username);
 
-            // Enter password
             txtPassword.clear();
             txtPassword.sendKeys(password);
 
-            // Click login button
             wait.until(ExpectedConditions.elementToBeClickable(btnLogin));
             btnLogin.click();
 
-            // Wait for login to complete (wait for URL change or specific element on next page)
             wait.until(ExpectedConditions.not(
                     ExpectedConditions.urlToBe("https://cloudkaptan-16d-dev-ed.develop.my.salesforce.com/")
             ));
-
         } catch (Exception e) {
             throw new RuntimeException("Failed to login: " + e.getMessage());
         }
@@ -104,7 +88,6 @@ public class LoginPage {
         }
     }
 
-    // Method to get the driver instance if needed by other classes
     public WebDriver getDriver() {
         return driver;
     }
