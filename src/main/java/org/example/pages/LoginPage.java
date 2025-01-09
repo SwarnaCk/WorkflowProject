@@ -60,7 +60,7 @@ public class LoginPage {
             btnLogin.click();
 
             wait.until(ExpectedConditions.not(
-                    ExpectedConditions.urlToBe("https://cloudkaptan-16d-dev-ed.develop.my.salesforce.com/")
+                    ExpectedConditions.urlToBe("https://login.salesforce.com/")
             ));
         } catch (Exception e) {
             throw new RuntimeException("Failed to login: " + e.getMessage());
