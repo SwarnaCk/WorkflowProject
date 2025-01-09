@@ -31,10 +31,23 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
     }
 
+//    private void setupDriver() {
+//        WebDriverManager.chromedriver().setup();
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--disable-notifications");
+//        options.addArguments("--start-maximized");
+//        options.setPageLoadTimeout(Duration.ofSeconds(15));
+//        driver = new ChromeDriver(options);
+//        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//    }
+
     private void setupDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");  // Add this line
         options.addArguments("--disable-notifications");
+        options.addArguments("--no-sandbox"); // Add this line
+        options.addArguments("--disable-dev-shm-usage"); // Add this line
         options.addArguments("--start-maximized");
         options.setPageLoadTimeout(Duration.ofSeconds(15));
         driver = new ChromeDriver(options);

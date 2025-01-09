@@ -215,6 +215,13 @@
         <scope>test</scope>
     </dependency>
 
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.8.2</version>
+        <scope>test</scope>
+    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
     <dependency>
