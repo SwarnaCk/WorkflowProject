@@ -5,22 +5,33 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest {
-    private LoginPage loginPage;
+    private ThreadLocal<LoginPage> loginPage = new ThreadLocal<>();
 
     @BeforeMethod
     public void setUp() {
-        loginPage = new LoginPage();
-        loginPage.navigateToLoginPage();
+        loginPage.set(new LoginPage());
+        loginPage.get().navigateToLoginPage();
     }
 
     @Test
     public void testValidLogin() {
-        loginPage.login("harsh.wardhan-2vpx@force.com", "Harsh@73792610");
-        Assert.assertFalse(loginPage.isLoginErrorDisplayed(), "Login should be successful, but error is displayed.");
+        LoginPage page = loginPage.get();
+        page.login("swarna.roy@cloudkaptan.com.dev", "Swarna880#");
+        Assert.assertFalse(page.isLoginErrorDisplayed(), "Login should be successful, but error is displayed.");
+    }
+
+    @Test
+    public void testInvalidLogin() {
+        LoginPage page = loginPage.get();
+        page.login("invalid_user@example.com", "wrongpassword");
+        Assert.assertTrue(page.isLoginErrorDisplayed(), "Login error message should be displayed for invalid credentials.");
+        Assert.assertEquals(page.getLoginErrorMessage(), "Your login attempt has failed. Make sure the username and password are correct.");
     }
 
     @AfterMethod
     public void tearDown() {
-        loginPage.closeBrowser();
+        loginPage.get().closeBrowser();
+        loginPage.remove();
     }
 }
+
