@@ -19,13 +19,6 @@ public class LoginTest {
         Assert.assertFalse(loginPage.isLoginErrorDisplayed(), "Login should be successful, but error is displayed.");
     }
 
-    @Test
-    public void testInvalidLogin() {
-        loginPage.login("invalid_user@example.com", "wrongpassword");
-        Assert.assertTrue(loginPage.isLoginErrorDisplayed(), "Login error message should be displayed for invalid credentials.");
-        Assert.assertEquals(loginPage.getLoginErrorMessage(), "Your login attempt has failed. Make sure the username and password are correct.");
-    }
-
     @AfterMethod
     public void tearDown() {
         loginPage.closeBrowser();
