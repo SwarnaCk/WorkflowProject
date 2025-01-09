@@ -15,7 +15,7 @@ public class LoginTest {
 
     @Test
     public void testValidLogin() {
-        loginPage.login("swarna.roy@cloudkaptan.com.dev", "Swarna880#");
+        loginPage.login("harsh.wardhan-2vpx@force.com", "Harsh@73792610");
         Assert.assertFalse(loginPage.isLoginErrorDisplayed(), "Login should be successful, but error is displayed.");
     }
 
