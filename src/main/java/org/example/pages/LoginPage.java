@@ -73,7 +73,7 @@ public class LoginPage {
         } catch (TimeoutException e) {
             return false;
         }
-    }
+    } //change
 
     public String getLoginErrorMessage() {
         if (isLoginErrorDisplayed()) {
